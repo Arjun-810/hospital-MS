@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+    <title>PRS-Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="doctor-registration.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="registrationController">
+    <style>
+        body{
+            background-image: linear-gradient(to right, #5761c2, #5d6fca, #647cd2, #6d8ad9, #7797df, #71a5e9, #6cb2f1,
+            #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+        }
+        .loginbox{
+            background-color: #ffffff;
+            box-shadow: 2px 5px 35px 10px rgba(0,0,0,0.2);
+        }
+        .heading-loginbox{
+            text-align: center;
+            padding: 4% 0px;
+            font-size: 35px;
+        }
+        label{
+            margin-left: 10%;
+        }
+        input{
+            width: 90%;
+            padding: 2% 2% 2% 4%;
+            margin: 0% 0px 2% 5% ;
+            border: 2px solid #ffffff;
+            border-bottom: 2px solid #220e43;
+            transition: all 1s;
+            transition-timing-function: ease;
+            outline: none;
+        }
+        input:focus,input:valid{
+            border: 2px solid #59ade9;
+            border-radius: 15px;
+            outline: none;
+        }
+        .error{
+            font-size: 15px;
+            padding-left: 10%;
+        }
+        select{
+            width: 60%;
+            padding: 1.5% 2% 1.5% 4%;
+            margin: 3% 0px 0% 20% ;
+            border: 1px solid #222222;
+        }
+        .signup-btn{
+            width: 100%;
+            padding: 3% 2%;
+            text-align: center;
+        }
+    </style>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+            <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-10 loginbox">
+                <div class="container-fluid">
+                    <div class="row">
+                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                           <h2 class="heading-loginbox">Doctor Registeration</h2>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+                            <label for="firstname">First Name:</label><br>
+                            <input id="first_name" type="text" name="firstname" placeholder="Enter First Name"
+                                onkeyup="validateFirstName('first_name','firstnameerror')" required ng-model="firstname">
+                            <span class="error" id="firstnameerror" style="color:red"></span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+                            <label for="lastname">Last Name:</label><br>
+                            <input id="last_name" type="text" name="lastname" placeholder="Enter Last Name"
+                                onkeyup="validateLastName('last_name','lastnameerror')" required ng-model="lastname">
+                            <span class="error" id="lastnameerror" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+                            <label for="name">Mobile Number:</label><br>
+                            <input id="mobile_number" type="number" name="mobilenumber" placeholder="Enter Mobile No."
+                                onkeyup="validateNumber('mobile_number','mobilenumbererror')" ng-model="mobilenumber" required >
+                            <span class="error" id="mobilenumbererror" style="color:red"></span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+                            <label for="email">Email:</label><br>
+                            <input id="email" type="text" name="email" placeholder="Enter Your Email"
+                                onkeyup="validateEmail('email','emailerror')" ng-model="email" required>
+                            <span class="error" id="emailerror" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+                            <label for="password">Password:</label><br>
+                            <input id="password" type="password" name="password" placeholder="Enter Your Password"
+                                onkeyup="validatePassword('password','passworderror')" ng-model="password" required>
+                            <span class="error" id="passworderror" style="color:red"></span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+                            <label for="cnfpassword">Confirm Password:</label><br>
+                            <input id="cnfpassword" type="password" name="cnfpassword"
+                                placeholder="Re-Enter Your Password"
+                                onkeyup="validateCnfPassword('cnfpassword','cnfpassworderror')" required>
+                            <span class="error" id="cnfpassworderror" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+                            <select id="age" class="age" name="age" onchange="validateAge('age','ageerror')" ng-model="age">
+                                <option>Your Age</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                            </select><br>
+                            <span class="error" id="ageerror" style="color:red"></span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb cb">
+                            <select name='gender' id="gender" onchange="validateGender('gender','gendererror')" ng-model="gender">
+                                <option>Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select><br>
+                            <span class="error" id="gendererror" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+                            <select id="qualification" class="qualification" name="qualification" onchange="validateQualification('qualification','qualificationerror')" ng-model="qualification">
+                               <option>Your Qualification</option>
+                                <option>MS</option>
+                                <option>MD</option>
+                                <option>MSc</option>
+                                <option>MBBS</option>
+                                <option>PhD</option>
+                            </select><br>
+                            <span class="error" id="qualificationerror" style="color:red"></span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb cb">
+                            <select name='experience' id="experience"
+                                onchange="validateExperience('experience','experienceerror')" ng-model="experience">
+                                
+                                <option>Your Experience</option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                            </select><br>
+                            <span class="error" id="experienceerror" style="color:red"></span>
+                        </div>
+                    </div>
+                    
+                 <!-- </div> row div<br> -->
+                    <!-- button row starts -->
+                    <br>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3"></div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+                            <button class="signup-btn" id="signup_btn" onclick="onSubmit()"
+                            ng-click="postdata(firstname, lastname, mobilenumber, email, gender, password, age,qualification,experience)"
+                                >SignUp</button>
+                                
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3"></div>
+
+                    </div>
+                    <br><br>
+                    <!-- button row end -->
+                </div>
+                </div>            
+            <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
