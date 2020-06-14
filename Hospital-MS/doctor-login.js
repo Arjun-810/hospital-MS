@@ -1,18 +1,41 @@
-var myApp = angular.module("myApp", []);
-myApp.controller("loginController", function ($scope, $http, $log) {
-    $http({
-        mrthod: 'GET',
-        url: "https://jsonplaceholder.typicode.com/users",
-    })
-    .then(function(response){
-        $scope.users = response.data;
-        $log.info(response);
-    },function(reason){
-        $scope.error =  reason.data;
-        $log.info(reason);
-    
-    });
-});
+// var myApp = angular.module("myApp", []);
+// myApp.controller("loginController", function ($scope, $http, $log) {
+//     $http({
+//         mrthod: 'GET',
+//         url: "https://jsonplaceholder.typicode.com/users",
+//     })
+//     .then(function(response){
+//         $scope.users = response.data;
+//         $log.info(response);
+//     },function(reason){
+//         $scope.error =  reason.data;
+//         $log.info(reason);
+
+//     });
+// });
+var app = angular.module("myApp", []);
+app.controller("loginController", function ($scope, $http) {
+    $scope.email = null;
+    $scope.password = null;
+
+    $scope.postdoctordata = function (email, password) {
+
+        var data = {
+            email: email,
+            password: password
+        }
+        console.log(data);
+        $http.post("https://b1afd516ad02.ngrok.io/doctor/login/", JSON.stringify(data))
+            .then(function (res) {
+                console.log(res);
+            })
+    }
+    // $http.get("url")
+    // .then(function(response){
+    //     $scope.dataOut = response.data;
+    // })
+})
+
 // ---
 // ---
 function validateUsername() {
@@ -57,34 +80,36 @@ function validateFields() {
     var p = validatePassword();
     var u = validateUsername();
     if ((p == true) && (u == true)) {
-        validateAPI();
+        // validateAPI();
+        console.log("right");
     } else {
         alert("Fill alll Fields!")
+        console.log("wrong");
     }
 }
 
-function validateAPI() {
-    var url = "";
-    fetch("http://jsonplaceholder.typicode.com/users/2")
-        .then(function (response) {
-            if (response.status == 200) {
-                return response.json();
-            } else {
-                throw new Error('Invalid user ID');
-            }
-        })
-        .then((data) => {
-            console.log(data);
-            var usernameData = document.getElementById("username").value;
-            var passwordData = document.getElementById("password").value;
+// function validateAPI() {
+//     var url = "";
+//     fetch("http://jsonplaceholder.typicode.com/users/2")
+//         .then(function (response) {
+//             if (response.status == 200) {
+//                 return response.json();
+//             } else {
+//                 throw new Error('Invalid user ID');
+//             }
+//         })
+//         .then((data) => {
+//             console.log(data);
+//             var usernameData = document.getElementById("username").value;
+//             var passwordData = document.getElementById("password").value;
 
-            if ((data.username == usernameData) && (data.id == passwordData)) {
-                window.location = "PortalPRS.html";
-            } else {
-                alert("Invalid Credentials");
-            }
-        })
-        .catch((err) => {
-            console.log('ERROR: ', err.message);
-        });
-}
+//             if ((data.username == usernameData) && (data.id == passwordData)) {
+//                 window.location = "PortalPRS.html";
+//             } else {
+//                 alert("Invalid Credentials");
+//             }
+//         })
+//         .catch((err) => {
+//             console.log('ERROR: ', err.message);
+//         });
+// }

@@ -22,10 +22,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
     <script src="doctor-login.js"></script>
-    <title>LogIn PRS</title>
+    <title>Doctor Login</title>
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="loginController">
     <style>
         body {
             font-family: sans-serif;
@@ -62,7 +62,7 @@
         /* .template-review {
             text-align: center;
             margin-top: 40%;
-        
+
             color: palegoldenrod;
             font-size: 380%;
             font-family: cursive;
@@ -158,7 +158,7 @@
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-10 box ">
                 <div class="container-fluid">
                     <div class="row">
-                        
+
                         <div class="col-xl-8 col-lg-8 co-md-8 col-sm-8 col-8 loginbox">
 
                             <div class="row">
@@ -168,23 +168,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 inpt">
-                                    <label for="username">Doctor Id</label>
-                                    <input type="text" class="username" id="username" onkeyup="validateUsername()"
-                                        required>
+                                    <label for="email">Email</label>
+                                    <input type="text" class="email" id="username" onkeyup="validateUsername()"
+                                       ng-model="email" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 inpt">
-                                    <label for="username">Password</label>
+                                    <label for="password">Password</label>
                                     <input type="password" class="password" id="password" onkeyup="validatePassword()"
-                                        required>
+                                        required ng-model="password">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
-                                    <button class="btn-login" type="submit" onclick="validateFields()">LogIn</button>
+                                    <button class="btn-login" type="submit" onclick="validateFields()" ng-click="postdoctordata(email,password)">LogIn</button>
                                 </div>
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
 

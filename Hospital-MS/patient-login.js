@@ -43,5 +43,6 @@ function validateFields() {
         console.log("Right");
     } else {
         alert("Fill alll Fields!")
+        console.log("Wrong")
     }
 }

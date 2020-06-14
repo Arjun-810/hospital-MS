@@ -34,7 +34,7 @@ myApp.controller("registrationController", function ($scope, $http) {
             age: age,
             blood_group: bloodgroup,
             height: height,
-            weight: weight,
+            weight: weight
         }
         console.log(data);
         $http.post("https://b1afd516ad02.ngrok.io/patient/register/", JSON.stringify(data))
@@ -43,20 +43,21 @@ myApp.controller("registrationController", function ($scope, $http) {
             }).catch
     }
 });
-// --
-myApp.controller("loginController", function ($scope, $http) {
-    $scope.username = null;
+myApp.controller("logController", function ($scope, $http) {
+    $scope.email = null;
     $scope.password = null;
 
-    $scope.postdata = function (username, password) {
-
+    $scope.postpatientdata = function (email, password) {
+    console.log("hii");
         var data = {
-            username: username,
+            email: email,
             password: password
         }
-        $http.post("url", JSON.stringify(data))
+        console.log(data);
+        $http.post("https://b1afd516ad02.ngrok.io/patient/login/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
+                $scope.employees = res;
             })
     }
     // $http.get("url")
